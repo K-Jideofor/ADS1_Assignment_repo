@@ -9,9 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from pandas import DataFrame
-cols = [0, 2, 3, 4, 9, 10]
+cols = [0, 2, 3, 4, 9, 10]   # Columns of interest
 
-# Read file into DataFrame and print
+# Read file into DataFrame, extract columns and print
 GasPrices = pd.read_csv("gas_prices.csv", usecols=(cols))
 print(GasPrices)
 
@@ -19,8 +19,8 @@ print(GasPrices)
 df_recent = GasPrices.iloc[-9:]
 print(df_recent)
 
-
-# Line plots    
+# Line Plot
+# Define Line Plot Functions
 def line_plot(x_axis, y_data, xticks, label, title):
     plt.figure(figsize=(10,5))
     for i in range(len(y_data)):
@@ -39,17 +39,16 @@ title = 'Line Plot Showing The GasPrices in 5 Selected Countries (2000-2008)'
 
 line_plot(x_axis, y_data, xticks, label, title)
 
-
 plt.xlabel("Year")
 plt.ylabel("GasPrices($)")
 plt.show()
 
 
-
-# QUESTION 2a SOLUTION BAR PLOT
-bar_data = df_recent.drop(["Canada", "USA"], axis=1)
+# BAR PLOT
+bar_data = df_recent.drop(["Canada", "USA"], axis=1)  # Drop Columns Canada and USA
 print(bar_data)
 
+# Define Bar Plot Functions
 def bar_chart(country1, country2, country3):
     plt.subplots(figsize=(10, 6))
     width = wt
@@ -77,12 +76,11 @@ plt.xlabel("Year")
 plt.ylabel("GasPrices($)")
 plt.title("Bar Plot Showing The GasPrices in 3 European Countries")
 
-
 plt.show()
 
 
-
-# QUESTION 2B SOLUTION PIE CHART
+# PIE CHART
+# Define Pie Chart Functions
 def subplot_pie_chart(x_axis,label,title):
      plt.figure(figsize=(8,7))
      for i in range(len(x_axis)):
@@ -91,7 +89,7 @@ def subplot_pie_chart(x_axis,label,title):
      plt.show()
      
 x_axis = [df_recent["Canada"],df_recent["France"],df_recent["Germany"],
-          df_recent["UK"],df_recent["USA"]]
+          df_recent["UK"]]
 label = df_recent["Year"]
 title = ["Canada","France","Germany","UK"]
 subplot_pie_chart(x_axis,label,title)
